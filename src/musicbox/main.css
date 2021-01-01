@@ -1,0 +1,31 @@
+@font-face {
+    -fx-font-family: 'LED Dot-Matrix';
+    src: url('led.ttf');
+}
+
+.text-field {
+    -fx-font-family: 'LED Dot-Matrix', sans-serif;
+    -fx-font-size: 35px;
+    -fx-padding: 5px;
+    -fx-pref-width: 238px;
+    -fx-text-alignment: justify;
+    -fx-text-fill: red;
+    -fx-background-color: black;
+    -fx-background-radius: 5px;
+    -fx-opacity: 1;
+}
+
+.toggle-button {
+    -fx-background-image: url('red_button_off.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 41px;
+    -fx-border-radius: 41px;
+    -fx-min-height: 50px;
+    -fx-min-width: 50px;
+}
+
+.toggle-button:selected, .toggle-button:pressed {
+    -fx-background-image: url('green_button_on.png');
+}
