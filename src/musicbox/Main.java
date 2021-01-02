@@ -15,10 +15,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -35,7 +39,7 @@ public class Main extends Application {
     private static final String AUDIO01_VALUE = "AUDIO 01";
     private static final String AUDIO02_VALUE = "AUDIO 02";
 
-    private static final String AUDIO01_FILENAME = "";
+    private static final String AUDIO01_FILENAME = "D:\\java_test\\src\\musicbox\\boi.wav";
     private static final String AUDIO02_FILENAME = "";
 
     private static final double MAX_RATE = 20000;
@@ -51,6 +55,8 @@ public class Main extends Application {
     private TextField display;
     private ToggleGroup toggleGroup;
     private ToggleButton firstButton;
+
+    private final MediaView viewer = new MediaView();
 
     @Override
     public void start(Stage primaryStage) {
@@ -69,10 +75,19 @@ public class Main extends Application {
             }
             display.setText(toggleGroup.getSelectedToggle() == firstButton ? AUDIO01_VALUE : AUDIO02_VALUE);
         });
+        playSound(AUDIO01_FILENAME);
     }
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private void playSound(String filename) {
+        Media media = new Media(new File(filename).toURI().toString());
+        MediaPlayer player = new MediaPlayer(media);
+        viewer.setMediaPlayer(player);
+        player.play();
+        System.out.println(player.getStatus().toString());
     }
 
     private Scene createScene() {
@@ -141,6 +156,7 @@ public class Main extends Application {
         rotator.setToAngle(360);
         rotator.setInterpolator(LINEAR);
         rotator.setCycleCount(INDEFINITE);
+        rotator.setRate(RATE_MODIFIER);
         return rotator;
     }
 
