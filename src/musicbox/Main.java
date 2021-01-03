@@ -194,7 +194,6 @@ public class Main extends Application {
                     currentAudioRate = Math.max(tempAudioRate, MIN_AUDIO_RATE);
                     player.setRate(currentAudioRate);
                     player.play();
-                    System.out.println(currentAudioRate);
                 } else {
                     currentAudioRate = MIN_AUDIO_RATE;
                     player.setRate(currentAudioRate);
